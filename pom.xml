@@ -67,6 +67,16 @@
 			<artifactId>aspectjtools</artifactId>
 			<version>1.9.0</version>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.aspectj</groupId> -->
+<!-- 			<artifactId>aspectjrt</artifactId> -->
+<!-- 			<version>1.9.0</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>aopalliance</groupId> -->
+<!-- 			<artifactId>aopalliance</artifactId> -->
+<!-- 			<version>1.0</version> -->
+<!-- 		</dependency> -->
 	</dependencies>
 	<build>
 		<finalName>chapter5</finalName>
