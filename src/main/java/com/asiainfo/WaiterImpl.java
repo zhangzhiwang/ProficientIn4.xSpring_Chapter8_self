@@ -17,4 +17,9 @@ public class WaiterImpl {
 	public void serveTo(String name) {
 		System.out.println("serve to " + name);
 	}
+	
+	public static void main(String[] args) {
+		WaiterImpl w = new WaiterImpl();
+		System.out.println(w.getClass().getSuperclass());
+	}
 }

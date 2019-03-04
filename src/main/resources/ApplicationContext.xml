@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:zzw="http://www.asiainfo.com/schema/service"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/util
@@ -11,10 +12,14 @@
        http://www.springframework.org/schema/context/spring-context-4.0.xsd
        http://www.asiainfo.com/schema/service
        http://www.asiainfo.com/schema/service.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
        ">
 	
 	<context:component-scan base-package="com.asiainfo"></context:component-scan>
 	
 	<!-- 基于@AspectJ注解切面的自动代理创建器 -->
-	<bean id="annotationAwareAspectJAutoProxyCreator" class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean>
+<!-- 	<bean id="annotationAwareAspectJAutoProxyCreator" class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean> -->
+	<!-- 利用aop的命名空间进行自动代理配置 -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>	<!-- 底层调用的仍然是AnnotationAwareAspectJAutoProxyCreator，实现细节被aop:aspectj-autoproxy屏蔽了。proxy-target-class是否启用cglib代理，如果不启用则使用jdk动态代理，前提是目标类实现了接口，如果没有实现接口则仍然使用cglib代理 -->
 </beans>

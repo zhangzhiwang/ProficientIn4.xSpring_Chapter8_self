@@ -30,9 +30,11 @@ public class SpringTest {
 	}
 
 	public static void main(String[] args) {
-
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:ApplicationContext.xml");
-		Object bean = applicationContext.getBean("userServiceImpl");
+		Object bean = applicationContext.getBean("waiterImpl");
 		System.out.println(bean);
+		System.out.println(bean.getClass().getSuperclass());
+		WaiterImpl waiterImpl = (WaiterImpl) bean;
+		waiterImpl.greetTo("zzw");
 	}
 }
