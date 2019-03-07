@@ -13,8 +13,14 @@ import org.springframework.stereotype.Component;
 @Component("myAspectJ")
 @Aspect // @Aspect注解标识该类为切面类,既然是切面就要有切点和增强
 public class MyAspectJ {
-	@Before("execution(* greetTo(..))")  // @Before定义了方位信息,里面的表达式定义了切点信息
-	public void beforeGreeting() {// 增强的横切逻辑
-		System.out.println("先打招呼...");
+//	@Before("execution(* greetTo(..))")  // @Before定义了方位信息,里面的表达式定义了切点信息
+//	public void beforeGreeting() {// 增强的横切逻辑
+//		System.out.println("先打招呼...");
+//	}
+	
+	// 各种基于@AspectJ的切点表达式详见课本p285
+	@Before("execution(* com.asiainfo.*.*(..))")
+	public void before() {
+		System.out.println("目标方法执行前织入的逻辑");
 	}
 }

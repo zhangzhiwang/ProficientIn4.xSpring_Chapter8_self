@@ -7,6 +7,9 @@ import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.asiainfo.impl.WaiterImpl;
+
+
 public class SpringTest {
 
 	@Test
@@ -32,9 +35,15 @@ public class SpringTest {
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:ApplicationContext.xml");
 		Object bean = applicationContext.getBean("waiterImpl");
-		System.out.println(bean);
-		System.out.println(bean.getClass().getSuperclass());
 		WaiterImpl waiterImpl = (WaiterImpl) bean;
 		waiterImpl.greetTo("zzw");
+		waiterImpl.serveTo("abc");
+		waiterImpl.met1();
+		
+//		Object bean = applicationContext.getBean("userServiceImpl");
+//		UserServiceImpl waiterImpl = (UserServiceImpl) bean;
+//		waiterImpl.met1();
+		
+		
 	}
 }
