@@ -2,6 +2,7 @@ package com.asiainfo.impl;
 
 import org.springframework.stereotype.Component;
 
+import com.asiainfo.ZzwAnnotation;
 import com.asiainfo.interfaces.IWaiter;
 
 /**
@@ -11,18 +12,25 @@ import com.asiainfo.interfaces.IWaiter;
  * @date 2019年3月3日 下午3:23:02
  */
 @Component("waiterImpl")
+@ZzwAnnotation
 public class WaiterImpl implements IWaiter {
 	public int greetTo(String name) {
 		System.out.println("greetTo " + name);
-		return 1;
+//		if("zzw".equals(name)) {
+//			String[] ss = new String[] {};
+//			System.out.println(ss[0]);
+//		} else {
+//			double d = 1/0;
+//		}
+		return 123321;
 	}
-	
+
 	public void serveTo(String name) {
 		System.out.println("serve to " + name);
 	}
-	
-	public int met1() {
-		System.out.println("WaiterImpl#met1()");
-		return 0;
+
+	public String met1(String name, IWaiter waiter) {
+		System.out.println("WaiterImpl#met1(" + name + ")");
+		return "aabbcc";
 	}
 }

@@ -8,6 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.asiainfo.impl.WaiterImpl;
+import com.asiainfo.impl.WaiterImplExt;
+import com.asiainfo.interfaces.IUserService;
 
 
 public class SpringTest {
@@ -36,13 +38,16 @@ public class SpringTest {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:ApplicationContext.xml");
 		Object bean = applicationContext.getBean("waiterImpl");
 		WaiterImpl waiterImpl = (WaiterImpl) bean;
-		waiterImpl.greetTo("zzw");
+		System.out.println("----------------");
+		waiterImpl.greetTo("zzw1");
 		waiterImpl.serveTo("abc");
-		waiterImpl.met1();
+		waiterImpl.met1("zzw", waiterImpl);
+//		IUserService u  = (IUserService) bean;
+//		u.met1("", null);
 		
 //		Object bean = applicationContext.getBean("userServiceImpl");
 //		UserServiceImpl waiterImpl = (UserServiceImpl) bean;
-//		waiterImpl.met1();
+//		waiterImpl.met1("zzw", new WaiterImpl());
 		
 		
 	}

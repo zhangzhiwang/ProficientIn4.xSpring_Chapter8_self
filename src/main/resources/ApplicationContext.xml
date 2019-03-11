@@ -21,5 +21,21 @@
 	<!-- 基于@AspectJ注解切面的自动代理创建器 -->
 <!-- 	<bean id="annotationAwareAspectJAutoProxyCreator" class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean> -->
 	<!-- 利用aop的命名空间进行自动代理配置 -->
-	<aop:aspectj-autoproxy proxy-target-class="true"/>	<!-- 底层调用的仍然是AnnotationAwareAspectJAutoProxyCreator，实现细节被aop:aspectj-autoproxy屏蔽了。proxy-target-class是否启用cglib代理，如果不启用则使用jdk动态代理，前提是目标类实现了接口，如果没有实现接口则仍然使用cglib代理 -->
+	<!-- <aop:aspectj-autoproxy proxy-target-class="true"/> -->	<!-- 底层调用的仍然是AnnotationAwareAspectJAutoProxyCreator，实现细节被aop:aspectj-autoproxy屏蔽了。proxy-target-class是否启用cglib代理，如果不启用则使用jdk动态代理，前提是目标类实现了接口，如果没有实现接口则仍然使用cglib代理 -->
+	
+	<!-- 基于aop的schema定义切面 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(* *(..)) and execution(* com.asiainfo..*.greetTo(..))" id="expr1"/>
+		<aop:aspect ref="myAdvice">
+<!-- 			<aop:before method="before" pointcut="execution(* *(..)) and execution(* com.asiainfo..*.greetTo1(..))"/> -->
+			<aop:before method="before" pointcut-ref="expr1"/>
+		</aop:aspect>
+		<aop:aspect ref="myAdvice2">
+			<aop:after-returning method="after" pointcut-ref="expr1" returning="rv"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="myAdvice" class="com.asiainfo.MyAdvice"></bean>
+	<bean id="myAdvice2" class="com.asiainfo.MyAdvice2"></bean>
+	
 </beans>
